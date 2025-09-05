@@ -36,18 +36,14 @@ export async function POST(request: NextRequest) {
       .join("\n\n---\n\n")
 
     // Create the system prompt with context
-    const systemPrompt = `You are a helpful AI assistant that answers questions based on the provided knowledge base. 
-Use the following context to answer the user's question. If the answer cannot be found in the context, 
-say so politely and suggest what information might be helpful.
+    const systemPrompt = `You are an expert assistant. 
+    Your knowledge base consists of the following documents. Answer the user's questions directly and confidently, as if this information is your own. Do not refer to "the provided context" or "the documents."
 
-Context from knowledge base:
+Knowledge Base:
 ${context}
 
-Instructions:
-- Answer based primarily on the provided context
-- Be concise but comprehensive
-- If you're not sure about something, acknowledge the uncertainty
-- If the question is outside the scope of the provided context, politely explain this`
+If the user's question cannot be answered using your knowledge base, simply state that you don't have information on that topic.`
+
 
     // Generate response using OpenAI
     const completion = await openai.chat.completions.create({
