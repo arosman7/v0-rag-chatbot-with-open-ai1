@@ -1,8 +1,12 @@
 import OpenAI from "openai"
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-})
+function createOpenAIClient(): OpenAI {
+  const apiKey = process.env.OPENAI_API_KEY
+  if (!apiKey) {
+    throw new Error("OPENAI_API_KEY environment variable is not set")
+  }
+  return new OpenAI({ apiKey })
+}
 
 export interface EmbeddedChunk {
   id: string
@@ -18,6 +22,8 @@ export interface EmbeddedChunk {
 // Generate embeddings for text
 export async function generateEmbedding(text: string): Promise<number[]> {
   try {
+    const openai = createOpenAIClient()
+
     const response = await openai.embeddings.create({
       model: "text-embedding-3-small",
       input: text.replace(/\n/g, " ").trim(),

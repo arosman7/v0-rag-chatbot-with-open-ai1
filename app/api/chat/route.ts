@@ -3,12 +3,15 @@ import OpenAI from "openai"
 import { vectorStore } from "@/lib/vector-store"
 import { generateEmbedding, findSimilarChunks } from "@/lib/embeddings"
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-})
-
 export async function POST(request: NextRequest) {
   try {
+    const apiKey = process.env.OPENAI_API_KEY
+    if (!apiKey) {
+      return NextResponse.json({ error: "OpenAI API key is not configured" }, { status: 500 })
+    }
+
+    const openai = new OpenAI({ apiKey })
+
     const { message } = await request.json()
 
     if (!message || typeof message !== "string") {
