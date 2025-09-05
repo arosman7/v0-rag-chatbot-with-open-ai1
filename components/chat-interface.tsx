@@ -161,7 +161,7 @@ export function ChatInterface() {
                     <p className="text-sm whitespace-pre-wrap">{message.content}</p>
                     {message.sources && message.sources.length > 0 && (
                       <div className="mt-2 pt-2 border-t border-border/20">
-                        <p className="text-xs opacity-70 mb-1">Sources:</p>
+                        <p className="text-xs opacity-70 mb-1">Источники:</p>
                         <div className="flex flex-wrap gap-1">
                           {message.sources.map((source, index) => (
                             <Badge key={index} variant="outline" className="text-xs">
