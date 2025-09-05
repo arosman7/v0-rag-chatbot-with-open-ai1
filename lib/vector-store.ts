@@ -1,10 +1,12 @@
-import { loadDocuments, processDocuments, Document } from "./documents";
-import { generateEmbedding, type EmbeddedChunk } from "./embeddings";
 import fs from "fs/promises";
 import path from "path";
+import mammoth from "mammoth";
+
+// Path to your documents directory
+const DOCUMENTS_DIR = path.join(process.cwd(), "data", "documents");
 
 // Path for the cache file
-const CACHE_PATH = path.join(process.cwd(), "data", "cache", "embeddings-cache.json");
+const CACHE_PATH = path.join("/tmp", "embeddings-cache.json");
 
 interface Cache {
   [filePath: string]: {
@@ -93,6 +95,3 @@ class VectorStore {
     return this.initialized;
   }
 }
-
-// Singleton instance
-export const vectorStore = new VectorStore();
