@@ -116,11 +116,11 @@ export function ChatInterface() {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Bot className="w-5 h-5" />
-          Chat with AI Assistant
+          Переписка с ИИ ветеринарным асистентом
           {isInitialized && (
             <Badge variant="secondary" className="ml-auto">
               <Database className="w-3 h-3 mr-1" />
-              Ready
+              Готово
             </Badge>
           )}
         </CardTitle>
@@ -131,13 +131,13 @@ export function ChatInterface() {
             {!isInitialized && (
               <div className="text-center text-muted-foreground py-8">
                 <Database className="w-8 h-8 mx-auto mb-2 animate-pulse" />
-                Initializing knowledge base...
+                Инициализация базы знании...
               </div>
             )}
             {messages.length === 0 && isInitialized && (
               <div className="text-center text-muted-foreground py-8">
-                <p className="mb-2">Start a conversation by asking a question!</p>
-                <p className="text-sm">Try asking about our services, pricing, or technical documentation.</p>
+                <p className="mb-2">Начните диалог спрашивая ваши вопросы</p>
+                <p className="text-sm">Асистент может ответить на широкий перечень вопросов по ветеринарии</p>
               </div>
             )}
             {messages.map((message) => (
@@ -205,7 +205,7 @@ export function ChatInterface() {
           <Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder={isInitialized ? "Ask a question..." : "Initializing..."}
+            placeholder={isInitialized ? "Напишите ваш вопрос..." : "Initializing..."}
             disabled={isLoading || !isInitialized}
             className="flex-1"
           />
