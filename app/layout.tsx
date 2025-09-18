@@ -6,8 +6,8 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Ветеринария',
-  description: 'Created with v0',
-  generator: Ветеринария',
+  description: 'Вет ПО',
+  generator: 'Ветеринария',
 }
 
 export default function RootLayout({
